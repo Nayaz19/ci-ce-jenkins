@@ -31,6 +31,32 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<choice doc:name="Choice" doc:id="cf6c13eb-3c09-4b63-8685-42880f0b8016" >
+			<when expression="#[isEmpty(payload)]">
+				<ee:transform doc:name="Transform Message" doc:id="cab45e75-0b32-4f0d-a84f-8687535d1b4c" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"res": "empty payload"
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise >
+				<ee:transform doc:name="Transform Message" doc:id="3ee7119f-487e-4ffa-b03e-58bc24d87538" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"res": "not an empty payload"
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</otherwise>
+		</choice>
 		<logger level="INFO" doc:name="Logger" doc:id="1eebdccb-97c7-4bef-8fba-b3cf7a64d1c8" message="#[payload]"/>
 	</flow>
 </mule>

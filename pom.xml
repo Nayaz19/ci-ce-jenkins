@@ -69,6 +69,12 @@
 			<version>1.2.7</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.connectors</groupId>
+			<artifactId>mule4-mqtt3-connector</artifactId>
+			<version>1.0.6</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
