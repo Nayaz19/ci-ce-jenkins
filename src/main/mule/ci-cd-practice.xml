@@ -10,6 +10,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	</http:listener-config>
 	<flow name="ci-cd-practiceFlow" doc:id="3dea4f01-81e9-4caf-99a3-240e73973996" >
 		<http:listener doc:name="Listener" doc:id="d4de6839-b284-418c-a12f-7126dcd298b3" config-ref="HTTP_Listener_config" path="/jenkins"/>
+		<logger level="INFO" doc:name="Logger" doc:id="0f1b68dd-5a74-433f-8073-85e799bf3190" />
 		<ee:transform doc:name="Transform Message" doc:id="e4efd48a-f309-47cf-a119-94da482f23cc" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -20,5 +21,31 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<choice doc:name="Choice" doc:id="c49e3a93-06bb-4a3c-8e06-69d2892e2988" >
+			<when expression="#[isEmpty(payload)]">
+				<ee:transform doc:name="Transform Message" doc:id="e929b904-2c53-4263-8d70-4638c71b2c18" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"result": "message from choice router"
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise >
+				<ee:transform doc:name="Transform Message" doc:id="68cf52a4-b012-4510-bad5-0d4b4fee8ef1" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"result": "default message from choice router  ci cd"
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</otherwise>
+		</choice>
 	</flow>
 </mule>
