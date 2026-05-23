@@ -21,16 +21,26 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<choice doc:name="Choice" doc:id="c49e3a93-06bb-4a3c-8e06-69d2892e2988" >
-			<when expression="#[isEmpty(payload)]">
+		<ee:transform doc:name="Transform Message" doc:id="01091148-534c-4616-b1bb-b62b7e9d675c" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message": " ci cd successfully run"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<!-- [STUDIO:"Choice"]<choice doc:name="Choice" doc:id="c49e3a93-06bb-4a3c-8e06-69d2892e2988" >
+			<when expression="#[isEmpty(payload)&#93;">
 				<ee:transform doc:name="Transform Message" doc:id="e929b904-2c53-4263-8d70-4638c71b2c18" >
 					<ee:message >
 						<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
----
+&#45;&#45;-
 {
 	"result": "message from choice router"
-}]]></ee:set-payload>
+}&#93;&#93;></ee:set-payload>
 					</ee:message>
 				</ee:transform>
 			</when>
@@ -39,13 +49,13 @@ output application/json
 					<ee:message >
 						<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
----
+&#45;&#45;-
 {
 	"result": "default message from choice router  ci cd"
-}]]></ee:set-payload>
+}&#93;&#93;></ee:set-payload>
 					</ee:message>
 				</ee:transform>
 			</otherwise>
-		</choice>
+		</choice> [STUDIO] -->
 	</flow>
 </mule>
