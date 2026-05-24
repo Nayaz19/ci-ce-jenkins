@@ -41,7 +41,7 @@ output application/json
 output application/json
 ---
 {
-	"res": "not an empty payload"
+	"res": "not an empty payload updated"
 }]]></ee:set-payload>
 					</ee:message>
 				</ee:transform>
