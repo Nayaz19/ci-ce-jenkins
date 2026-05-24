@@ -21,16 +21,6 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<ee:transform doc:name="Transform Message" doc:id="01091148-534c-4616-b1bb-b62b7e9d675c" >
-			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
----
-{
-	"message": " ci cd successfully run"
-}]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
 		<choice doc:name="Choice" doc:id="cf6c13eb-3c09-4b63-8685-42880f0b8016" >
 			<when expression="#[isEmpty(payload)]">
 				<ee:transform doc:name="Transform Message" doc:id="cab45e75-0b32-4f0d-a84f-8687535d1b4c" >
