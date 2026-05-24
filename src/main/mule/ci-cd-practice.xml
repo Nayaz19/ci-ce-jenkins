@@ -29,7 +29,7 @@ output application/json
 output application/json
 ---
 {
-	"res": "empty payload"
+	"res": "empty payload updated"
 }]]></ee:set-payload>
 					</ee:message>
 				</ee:transform>
